@@ -1,0 +1,31 @@
+{
+  "name": "superdecimal",
+  "version": "1.0.0",
+  "description": "base on Bigint, a javascript es-2017 new feature to solve the problem of IEEE-754",
+  "main": "index.js",
+  "scripts": {
+    "test:superdecimal": "jest ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seenyea/SuperDecimal.git"
+  },
+  "author": "seenyea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seenyea/SuperDecimal/issues"
+  },
+  "homepage": "https://github.com/seenyea/SuperDecimal#readme",
+  "dependencies": {
+    "cypress": "^8.2.0",
+    "encoding": "^0.1.12",
+    "express": "^4.16.4",
+    "webpack": "^4.29.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6"
+  }
+}
