@@ -163,7 +163,7 @@ class SuperDecimal{
   
   /**
    * 当前SuperDecimal除以另一个SuperDecimal
-   * @param {SuperDecimal} divisor 
+   * @param {SuperDecimal} divisor - 除数
    * @returns {SuperDecimal}
    */
   divide(divisor) {
@@ -178,6 +178,36 @@ class SuperDecimal{
     res = tostr(res, DIVIDE_DECIMAL_PLACE + 1);//保留31数字，为了进行30位有效数字的四舍五入
     return new SuperDecimal(res);
   }
+
+  /**
+   * 两个数字相加
+   * @param {SuperDecimal} addtion - 加数
+   * @returns {SuperDecimal}
+   */
+  add(addtion){
+    const sameDeciaml = Math.max(this.decimalLen, addtion.decimalLen);
+    let add1 = assembleNumber(this, sameDeciaml);
+    let add2 = assembleNumber(addtion, sameDeciaml);
+
+    let res = (add1.bigint + add2.bigint).toString();
+    res = tostr(res, sameDeciaml);
+    return new SuperDecimal(res);
+  }
+
+  /**
+   * 两个数字相减
+   * @param {SuperDecimal} substraction - 减数
+   * @returns {SuperDecimal}
+   */
+  sub(substraction){
+    const sameDeciaml = Math.max(this.decimalLen, substraction.decimalLen);
+    let sub1 = assembleNumber(this, sameDeciaml);
+    let sub2 = assembleNumber(substraction, sameDeciaml);
+
+    let res = (sub1.bigint - sub2.bigint).toString();
+    res = tostr(res, sameDeciaml);
+    return new SuperDecimal(res);
+  }
   
   /**
    * 把当前的SuperDecimal的数字转化成数字的字符串输出
@@ -185,6 +215,38 @@ class SuperDecimal{
    */
   tostr() {
       return tostr(this.bigint, this.decimalLen);
+  }
+
+  /**
+   * 以字符的形式输出decimal小数位的字符
+   * @param {number} decimal - 保留小数的位数
+   * @returns {string}
+   */
+  toFixed(decimal = 10){
+    const { result } = this;
+    let  [ints, decis] = String(result).split(".").concat("");
+    const l = decis.length;
+
+    if(!l){
+      return `${ints}.${''.padEnd(decimal, '0')}`
+    }
+
+    let res = decis.substr(0, decimal);
+    let round = decis.substr(decimal, 1);
+    round = round || 0;
+    let newNum = new SuperDecimal(`${ints}.${res}`);
+    if(round >= 5){
+      let one = `0.${'1'.padStart(decimal, '0')}`;
+      one = new SuperDecimal(one);
+      newNum = newNum.add(one);
+    }
+    if(newNum.decimalLen){
+      if(decimal <= newNum.decimalLen)
+        return newNum.result;
+      return newNum.result.padEnd(newNum.result.length + decimal - newNum.decimalLen, '0');
+    }
+    
+    return `${newNum.integer}.${''.padEnd(decimal, '0')}`
   }
 
 }

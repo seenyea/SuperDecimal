@@ -162,4 +162,67 @@ describe('SuperDecimal', function() {
     });
   });
 
+  describe('#toFixed)', function() {
+    it(`toFixed test case #1 new SuperDecimal('2.3456').toFixed(1) === '2.3'`, function() {
+        const num = '2.3456';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(1), '2.3');
+    });
+
+    it(`toFixed test case #2 new SuperDecimal('2.3456').toFixed(2) === '2.35'`, function() {
+        const num = '2.3456';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(2), '2.35');
+    });
+
+    it(`toFixed test case #3 new SuperDecimal('2.3456').toFixed(3) === '2.346'`, function() {
+        const num = '2.3456';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(3), '2.346');
+    });
+
+    it(`toFixed test case #4 new SuperDecimal('2.3456').toFixed(4) === '2.3456'`, function() {
+        const num = '2.3456';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(4), '2.3456');
+    });
+
+    it(`toFixed test case #5 new SuperDecimal('2.3456').toFixed(5) === '2.34560'`, function() {
+        const num = '2.3456';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(5), '2.34560');
+    });
+
+    it(`toFixed test case #6 new SuperDecimal('2').toFixed(1) === '2.0'`, function() {
+        const num = '2';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(1), '2.0');
+    });
+
+    it(`toFixed test case #7 new SuperDecimal('2').toFixed(2) === '2.00'`, function() {
+        const num = '2';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(2), '2.00');
+    });
+
+    it(`toFixed test case #8 new SuperDecimal('0.999').toFixed(1) === '1.0'`, function() {
+        const num = '0.999';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(1), '1.0');
+    });
+
+    it(`toFixed test case #9 new SuperDecimal('0.999').toFixed(2) === '1.00'`, function() {
+        const num = '0.999';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(2), '1.00');
+    });
+
+    it(`toFixed test case #10 new SuperDecimal('0.999').toFixed(3) === '0.999'`, function() {
+        const num = '0.999';
+        const sd1 = new SuperDecimal(num);
+        assert.equal(sd1.toFixed(3), '0.999');
+    });
+
+  });
+
 });
