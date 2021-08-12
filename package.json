@@ -4,7 +4,8 @@
   "description": "base on Bigint, a javascript es-2017 new feature to solve the problem of IEEE-754",
   "main": "index.js",
   "scripts": {
-    "test:superdecimal": "jest ./src"
+    "test:superdecimal": "jest ./src",
+    "build:doc": "jsdoc src/index.js -c doc.json -r"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "cypress": "^8.2.0",
     "encoding": "^0.1.12",
     "express": "^4.16.4",
+    "jsdoc": "^3.6.7",
     "webpack": "^4.29.0"
   },
   "devDependencies": {

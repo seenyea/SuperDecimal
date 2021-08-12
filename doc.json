@@ -1,0 +1,8 @@
+{
+    "source": {
+        "include": ["src/index.js", "src/util.js"],
+        "exclude": ["src/*.spec.js"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    }
+}
