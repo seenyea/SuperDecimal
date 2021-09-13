@@ -1,5 +1,5 @@
 # SuperDecimal
-base on Bigint, a javascript es-2017 new feature to solve the problem of IEEE-754
+It's a high-precision scientific computing library.
 
-# about install
+# some good features
 use yarn

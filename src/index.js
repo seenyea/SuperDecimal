@@ -1,7 +1,7 @@
 /**
  * @see module:uitls
  */
-import { convert2Str, IsNumeric, decimalPlace, tostr, assembleNumber } from './util';
+import { convert2Str, IsNumeric, decimalPlace, tostr, assembleNumber } from './util.js';
 
 /**
  * SuperDecimal类使用JavsScript中的BigInt（ES2017中的一个新的特性），去解决大数字的计算，以及由于浮点数字的标准数字引起的计算精准度的问题{@link http://c.biancheng.net/view/314.html|详情可以参考IEEE-754}
@@ -131,9 +131,24 @@ class SuperDecimal {
    */
   pow(n) {
     const _n = new SuperDecimal(n);
+    let index = _n.bigint;
+    let isNegtive = false;
+    if(_n.bigint < 0){
+      index = _n.bigint * -1n;
+      isNegtive = true;
+    }
+    if(isNegtive){
+      n = -1 * n
+    }
     const decimalLen = n * this.decimalLen;
-    let result = tostr(this.bigint ** _n.bigint, decimalLen);
-    return new SuperDecimal(result);
+    let p = this.bigint ** index;
+
+    let result = tostr(p, decimalLen);
+    result = new SuperDecimal(result);
+    if(isNegtive){
+      result = new SuperDecimal(1).divide(result);
+    }
+    return result;
   }
 
   /**
@@ -150,6 +165,7 @@ class SuperDecimal {
    * @returns {string}
    */
   toFixed(decimal = 10) {
+    debugger
     const {
       result
     } = this;
@@ -164,7 +180,6 @@ class SuperDecimal {
     let round = decis.substr(decimal, 1);
     round = round || 0; //如果整个位数小于输出的位数
     let newNum = new SuperDecimal(`${ints}.${res}`);
-
     if (round >= 5) { //四舍五入
       const sign = this.isNegtive ? '-' : '';
       let one = `${sign}0.${'1'.padStart(decimal, '0')}`;
@@ -172,9 +187,9 @@ class SuperDecimal {
       newNum = newNum.add(one);
     }
 
+    newNum = new SuperDecimal(newNum.result); //解决有时候因为，toStr的时候造成decimalLen不会变化
+
     if (newNum.decimalLen) { //有小数的处理方式
-      if (decimal <= newNum.decimalLen)
-        return newNum.result;
       return newNum.result.padEnd(newNum.result.length + decimal - newNum.decimalLen, '0');
     }
 

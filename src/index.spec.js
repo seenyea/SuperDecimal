@@ -130,6 +130,17 @@ describe('SuperDecimal', function () {
             assert.equal(sd.pow(4).result, '0.0625');
         });
 
+        it('pow test case #11 [0.5 ^ -4 = 16]', function () {
+            const sd = new SuperDecimal('0.5');
+            assert.equal(sd.pow(-4).result, '16');
+        });
+
+        it('pow test case #11 [0.3 ^ -4 = 123.45679]', function () {
+            const sd = new SuperDecimal('0.3');
+            assert.equal(sd.pow(-4).toFixed(6), '123.456790');
+        });
+        
+
     });
 
     describe('#mutiply()', function () {
@@ -304,6 +315,63 @@ describe('SuperDecimal', function () {
             assert.equal(sd1.toFixed(3), '-0.999');
         });
 
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(1) === '123.5'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            assert.equal(sd1.toFixed(1), '123.5');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(2) === '123.46'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            assert.equal(sd1.toFixed(2), '123.46');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(3) === '123.457'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            assert.equal(sd1.toFixed(3), '123.457');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(4) === '123.4568'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            assert.equal(sd1.toFixed(4), '123.4568');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(5) === '123.45679'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            assert.equal(sd1.toFixed(5), '123.45679');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(6) === '123.456790'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            const result = sd1.toFixed(6);
+            assert.equal(result, '123.456790');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(7) === '123.4567901'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            const result = sd1.toFixed(7);
+            assert.equal(result, '123.4567901');
+        });
+
+        it(`toFixed test case #10 new SuperDecimal('123.4567901234567901234567901234567').toFixed(8) === '123.45679012'`, function () {
+            const num = '123.4567901234567901234567901234567';
+            const sd1 = new SuperDecimal(num);
+            const result = sd1.toFixed(8);
+            assert.equal(result, '123.45679012');
+        });
+        
+        it(`toFixed test case #10 new SuperDecimal('123').toFixed(8) === '123.00000000'`, function () {
+            const num = '123';
+            const sd1 = new SuperDecimal(num);
+            const result = sd1.toFixed(8);
+            assert.equal(result, '123.00000000');
+        });
     });
 
 });
