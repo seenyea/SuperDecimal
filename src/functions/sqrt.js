@@ -1,15 +1,15 @@
-const sqrt = (num) => {
-    let right = num;
-    let left = 0;
-    let half = (right + left) / 2;
-    let delta = half * half - num;
-    while(Math.abs(delta) > 0.0001){
-        if(delta > 0){
+export const sqrt = (num) => {
+    let right = BigIt(num);
+    let left = 0n;
+    let half = (right + left) / 2n;
+    let n = 100;
+    while(n--){
+        if(delta > 0n){
             right = half;
-        }else if(delta < 0){
+        }else if(delta < 0n){
             left = half;
         }else{
-            break;
+            return half;
         }
         half = (right + left) / 2;
         delta = half * half - num;

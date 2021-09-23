@@ -1,7 +1,7 @@
 /**
  * @see module:uitls
  */
-import { convert2Str, IsNumeric, decimalPlace, tostr, assembleNumber } from './util.js';
+import { convert2Str, IsNumeric, decimalPlace, tostr, assembleNumber } from '@root/utils/util.js';
 
 /**
  * SuperDecimal类使用JavsScript中的BigInt（ES2017中的一个新的特性），去解决大数字的计算，以及由于浮点数字的标准数字引起的计算精准度的问题{@link http://c.biancheng.net/view/314.html|详情可以参考IEEE-754}

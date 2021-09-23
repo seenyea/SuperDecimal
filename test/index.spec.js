@@ -1,9 +1,8 @@
-import SuperDecimal from './index.js';
+import SuperDecimal from '@root/index.js';
 const assert = require('assert');
 
 
 describe('SuperDecimal', function () {
-
 
     describe('#add()', function () {
         it('add test case #1 [2 + 3.45 = 5.45]', function () {

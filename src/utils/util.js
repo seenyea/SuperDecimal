@@ -1,4 +1,4 @@
-import SuperDecimal from './index.js';
+import SuperDecimal from '@root/index.js';
 
 /**
  * 移除字符前后的所有的空格字符
